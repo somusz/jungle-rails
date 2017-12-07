@@ -17,9 +17,7 @@
     <% end %>
   </footer>
 
-  <aside class="<%= 'sold-out-tag' if product.quantity == 0 %>">
-    <span>Sold out!</span>
-  </aside>
+  <%= put_tag_if_sold_out(product.quantity) %>
 
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
