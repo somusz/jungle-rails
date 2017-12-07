@@ -5,6 +5,42 @@
   </header>
 
   <div class="order-summary jumbotron">
+    <h4>Your order:</h4>
+
+    <div class="panel panel-default items">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Product</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_total = 0 %>
+
+          <% @order.line_items.each do |item| %>
+            <%= render 'item', item: item %>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="5">
+              TOTAL:
+            </th>
+            <th>
+              <%= humanized_money_with_symbol @order_total %>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="order-summary jumbotron">
+    <h4>We have sent a copy to your email address: <%= @order.email %>.</h4>
     <h4>Thank you for your order!</h4>
   </div>
 

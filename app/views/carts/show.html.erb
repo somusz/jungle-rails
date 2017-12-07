@@ -33,6 +33,10 @@
     </table>
   </div>
 
+
+    <%#= @user_email = User.all.find(session[:user_id]).email %>
+
+
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -43,7 +47,7 @@
           data-name="Jungle"
           data-description="Jungle Order"
           data-locale="auto"
-          data-email="blah@example.com"
+          data-email="<%= User.all.find(session[:user_id]).email %>"
           data-currency="cad">
         </script>
       <% end %>
