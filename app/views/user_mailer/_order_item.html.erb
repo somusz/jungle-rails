@@ -1,0 +1,22 @@
+<% item_total = item.quantity * item.product.price %>
+<% @order_total += item_total %>
+  <tr>
+    <td>
+      <%= image_tag item.product.image.tiny %>
+    </td>
+    <td>
+      <h4><%= item.product.name %></h4>
+    </td>
+    <td>
+      <span><%= item.product.description %></span>
+    </td>
+    <td>
+      <%= item.quantity %>
+    </td>
+    <td>
+      <%= humanized_money_with_symbol item.product.price %>
+    </td>
+    <td>
+      <%= humanized_money_with_symbol item_total %>
+    </td>
+  </tr>
