@@ -30,4 +30,11 @@ module ApplicationHelper
     end
   end
 
+  def session?
+    session[:user_id]
+  end
+
+  def round_to_2(number)
+    number.round(2)
+  end
 end
