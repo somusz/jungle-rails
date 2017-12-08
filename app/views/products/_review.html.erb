@@ -1,0 +1,47 @@
+<% @rating_value = reviews.average(:rating) %>
+<div>
+  <h3>Reviews</h3>
+  <% if @rating_value %>
+    <h4> Overall Rating: <%= @rating_value.to_f.round(2) %>
+      <% (@rating_value.to_i).times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+    </h4>
+  <% else %>
+    <h4>This product has not been reviewed yet.</h4>
+  <% end %>
+
+  <div>
+    <% if session? %>
+      <div class="order-summary jumbotron">
+        <%= form_for [@product, Review.new] do |form| %>
+          <div class="form-group">
+            <h3>Review the product</h3>
+            <%= form.label :rating %>
+            <%= select_tag(:rating, options_for_select(['5','4','3','2','1'])) %>
+            <br>
+            <%= form.label :description %>
+            <%= form.text_area :description, placeholder: 'Tell us about your experience with the product', rows: '5', class: 'form-control' %>
+          </div>
+          <%= form.submit 'Submit review', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <% @product.reviews.order(updated_at: :desc).each do |review| %>
+      <div class="order-summary jumbotron">
+        <h4><%= review.user.first_name %> <i>(<%= review.updated_at %>)</i> </h4>
+        <p> <%= review.description %> </p>
+        <% if session[:user_id] == review.user_id %>
+          <%= link_to('Delete review', [@product, review], data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-primary') %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "Home", root_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>

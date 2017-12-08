@@ -132,5 +132,79 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+User.create!({
+  first_name: 'Ace',
+  last_name: 'Ventura',
+  email: 'ace@ventura.com',
+  password_digest: BCrypt::Password.create('12345')
+})
+
+User.create!({
+  first_name: 'Lord',
+  last_name: 'Meldrum',
+  email: 'lord@meldrum.com',
+  password_digest: BCrypt::Password.create('12345')
+})
+
+User.create!({
+  first_name: 'Random',
+  last_name: 'Racoon',
+  email: 'r@racoon.com',
+  password_digest: BCrypt::Password.create('12345')
+})
+
+## REVIEWS
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+Product.first.reviews.create!({
+  user_id:  User.find(1).id,
+  description: 'Ace Ventura says: this crap is the best crap ever',
+  rating: 5
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(1).id,
+  description: 'Ace Ventura says: this time it was not that great',
+  rating: 4
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(1).id,
+  description: 'Ace Ventura says: I am bored with this',
+  rating: 1
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(2).id,
+  description: 'Lord Meldrum says: did you rang MyLord',
+  rating: 3
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(2).id,
+  description: 'Lord Meldrum says: I was wondering if you would like a nice cup of tea Mrs Lipton',
+  rating: 4
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(2).id,
+  description: 'Lord Meldrum says: where would that lead us?',
+  rating: 3
+})
+
+Product.first.reviews.create!({
+  user_id:  User.find(3).id,
+  description: 'Random review rendered',
+  rating: 2
+})
 
 puts "DONE!"
