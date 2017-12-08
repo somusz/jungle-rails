@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
+      mail_order_receipt(order)
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
@@ -20,6 +21,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def mail_order_receipt(order)
+    UserMailer.order_receipt(order).deliver_now
+  end
 
   def empty_cart!
     # empty hash means no products in cart :)
