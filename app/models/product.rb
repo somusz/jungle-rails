@@ -6,9 +6,9 @@ class Product < ActiveRecord::Base
   has_many :reviews
   belongs_to :category
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :quantity, presence: true
-  validates :category, presence: true
+  validates :name, presence: { message: "must be given please" }
+  validates :price, presence: { message: "must be given please" }
+  validates :quantity, presence: { message: "must be given please" }
+  validates :category, presence: { message: "must be given please" }
 
 end
