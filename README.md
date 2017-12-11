@@ -25,3 +25,11 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * bcrypt
 * Stripe
 * See Gemfile for the other dependencies.
+
+## Screenshots
+
+!["Screenshot of product index page"](https://github.com/somusz/jungle-rails/blob/master/docs/Jungle%20-%20Products.png?raw=true)
+!["Screenshot of product show page"](https://github.com/somusz/jungle-rails/blob/master/docs/Jungle%20-%20Product%20Show.png?raw=true)
+!["Screenshot of cart page"](https://github.com/somusz/jungle-rails/blob/master/docs/Jungle%20-%20Cart.png?raw=true)
+!["Screenshot of payment page"](https://github.com/somusz/jungle-rails/blob/master/docs/Jungle%20-%20Payment.png?raw=true)
+!["Screenshot of order confirmation page"](https://github.com/somusz/jungle-rails/blob/master/docs/Jungle%20-%20Order%20Confirmation.png?raw=true)
