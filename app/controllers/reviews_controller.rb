@@ -31,12 +31,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def check_user()
-    unless session
-      redirect_to session[:return_to]
-    end
-  end
-
   def session_params
     session[:user_id]
   end
