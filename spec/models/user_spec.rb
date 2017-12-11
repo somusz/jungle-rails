@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before :each do
-    @user = User.create(
+    @test_user = User.create(
       first_name: 'test_first',
       last_name: 'test_last',
-      email: 'test@email.com',
+      email: 'tesT@emAil.com',
       password: 'password',
       password_confirmation: 'password'
     )
@@ -23,7 +23,11 @@ RSpec.describe User, type: :model do
     context 'fields' do
 
       it 'should check if the password is long enough' do
-        expect(@user.password.length).to be >=6
+        expect(@test_user.password.length).to be >=6
+      end
+
+      it 'should downcase the email' do
+        expect(@test_user.email).to eql('test@email.com')
       end
 
     end
@@ -31,7 +35,7 @@ RSpec.describe User, type: :model do
     context 'new users' do
 
       it 'should create a new user' do
-        expect(@user).to be_valid
+        expect(@test_user).to be_valid
       end
 
       it 'should create a second user with different email address' do
@@ -44,7 +48,7 @@ RSpec.describe User, type: :model do
 
     it 'should check validate user email' do
       @user_credentials = {
-        email: 'test@email.com',
+        email: ' teSt@emAil.com ',
         password: 'password'
       }
       expect(User.authenticate_with_credentials(@user_credentials)).to be_truthy
@@ -55,7 +59,7 @@ RSpec.describe User, type: :model do
         email: 'test@email.com',
         password: 'password'
       }
-      expect(User.authenticate_with_credentials(@user_credentials)).to eql(@user)
+      expect(User.authenticate_with_credentials(@user_credentials)).to eql(@test_user)
     end
 
   end
