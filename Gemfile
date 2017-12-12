@@ -47,6 +47,13 @@ group :development, :test do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rspec-rails', '~> 3.5'
+  gem 'sqlite3', '1.3.13'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :development do
