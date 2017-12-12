@@ -1,15 +1,18 @@
+<%# product admin index page%>
 <section class="admin-products-index">
 
   <header class="page-header">
     <h1>Admin &raquo; All Products</h1>
   </header>
 
+  <%# linked button for adding new product%>
   <div class="well">
     <%= link_to '+ New Product', [:new, :admin, :product], class: 'btn btn-info' %>
   </div>
 
   <div class="panel panel-default products">
 
+    <%# table to structure products%>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -20,6 +23,7 @@
           <th></th>
         </tr>
       </thead>
+      <%# rendering individual products%>
       <tbody>
         <%= render @products %>
       </tbody>

@@ -1,13 +1,16 @@
+<%# page for creating a new category%>
 <section class="admin-categories-new">
 
   <header class="page-header">
     <h1>Admin &raquo; New Category</h1>
   </header>
 
+  <%# linked button to the category admin index page%>
   <div class="well">
     <%= link_to 'All Categories', [:admin, :categories], class: 'btn btn-info' %>
   </div>
 
+  <%# form for a new category %>
   <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_for [:admin, @category] do |form| %>

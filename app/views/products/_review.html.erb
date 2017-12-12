@@ -1,9 +1,12 @@
+<%# review partial %>
 <% @rating_value = reviews.average(:rating) %>
 <div>
   <h3>Reviews</h3>
+  <%# if ratings exist, the average will be shown%>
   <% if @rating_value %>
     <h4> Overall Rating: <%= @rating_value.to_f.round(2) %>
-      <% (@rating_value.to_i).times do %>
+      <%# a star icon gets rendered as many times as the rating suggests %>
+      <% (@rating_value.to_f.round(0)).times do %>
         <i class="fa fa-star" aria-hidden="true"></i>
       <% end %>
     </h4>
@@ -11,6 +14,7 @@
     <h4>This product has not been reviewed yet.</h4>
   <% end %>
 
+  <%# the new review form is only accessible for logged users%>
   <div>
     <% if session? %>
       <div class="order-summary jumbotron">
@@ -29,11 +33,13 @@
     <% end %>
   </div>
 
+  <%# reviews get rendered under the product%>
   <div>
     <% @product.reviews.order(updated_at: :desc).each do |review| %>
       <div class="order-summary jumbotron">
         <h4><%= review.user.first_name %> <i>(<%= review.updated_at %>)</i> </h4>
         <p> <%= review.description %> </p>
+        <%# a delete button is available for the review owner%>
         <% if session[:user_id] == review.user_id %>
           <%= link_to('Delete review', [@product, review], data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-primary') %>
         <% end %>

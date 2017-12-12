@@ -1,3 +1,4 @@
+<%# cart review page if cart contains items %>
 <div class="panel panel-default items">
   <table class="table table-bordered">
     <thead>
@@ -9,7 +10,9 @@
       </tr>
     </thead>
     <tbody>
+      <%# sets cart total to zero initially %>
       <% @cart_total = 0 %>
+      <%# renders each item row-by-row%>
       <% cart.each do |product_id, details| %>
         <%= render 'item', product_id: product_id, details: details %>
       <% end %>
@@ -27,6 +30,7 @@
   </table>
 </div>
 
+<%# checkout box %>
 <div class="row">
   <div class="col-xs-12">
     <%= form_tag orders_path do %>

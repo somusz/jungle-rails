@@ -1,3 +1,4 @@
+<%# product partial on the index page%>
 <article class="product">
   <header>
     <%= link_to product do %>
@@ -17,6 +18,7 @@
     <% end %>
   </footer>
 
+  <%# referencing the sold out tag helper%>
   <%= put_tag_if_sold_out(product.quantity) %>
 
   <aside class="price">

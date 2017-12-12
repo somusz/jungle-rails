@@ -1,13 +1,16 @@
 class OrdersController < ApplicationController
 
+  #compiles orders
   def show
     @order = Order.find(params[:id])
   end
 
+  #creates an order
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
 
+    #evaluates order and places if valid
     if order.valid?
       empty_cart!
       mail_order_receipt(order)
@@ -16,21 +19,25 @@ class OrdersController < ApplicationController
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
     end
 
+  #handling stripe error
   rescue Stripe::CardError => e
     redirect_to cart_path, flash: { error: e.message }
   end
 
   private
 
+  #mail order details
   def mail_order_receipt(order)
     UserMailer.order_receipt(order).deliver_now
   end
 
+  #helper for emptying cart
   def empty_cart!
     # empty hash means no products in cart :)
     update_cart({})
   end
 
+  #stripe helper
   def perform_stripe_charge
     Stripe::Charge.create(
       source:      params[:stripeToken],
@@ -40,6 +47,7 @@ class OrdersController < ApplicationController
     )
   end
 
+  #helper for creating order
   def create_order(stripe_charge)
     order = Order.new(
       email: params[:stripeEmail],

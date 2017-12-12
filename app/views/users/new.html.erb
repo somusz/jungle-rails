@@ -1,3 +1,4 @@
+<%# user registration page%>
 <section class="users-new">
 
   <header class="page-header">
@@ -8,6 +9,7 @@
     <%= link_to 'Home', root_path, class: 'btn btn-info' %>
   </div>
 
+  <%# for for user registration %>
   <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_for :user, url: users_path do |form| %>

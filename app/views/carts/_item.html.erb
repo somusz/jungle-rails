@@ -1,7 +1,10 @@
+<%# individual items on the cart page%>
 <% quantity = details['quantity'].to_i %>
 
 <% if product = Product.find_by(id: product_id) %>
+  <%# item total calculated%>
   <% item_total = product.price * quantity %>
+  <%# and added to cart total %>
   <% @cart_total += item_total %>
 
   <tr>

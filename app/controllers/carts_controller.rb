@@ -1,8 +1,14 @@
 class CartsController < ApplicationController
 
+  #cart is only accessible if user is logged in,
+  #otherwise it redirets to the login page
   def show
+    unless session[:user_id]
+      redirect_to new_session_path
+    end
   end
 
+  #adds a unit of an item to cart
   def add_item
     product_id = params[:product_id].to_s
 
@@ -14,6 +20,7 @@ class CartsController < ApplicationController
     redirect_to :back
   end
 
+  #removes a unit of an item from cart
   def remove_item
     product_id = params[:product_id].to_s
 

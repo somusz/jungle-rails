@@ -1,21 +1,21 @@
 class SessionsController < ApplicationController
+  #users get redirected to the page from which they navigated to the login page
   def new
     session[:return_to] ||= request.referer
   end
 
+  #users are authenticated via a user helper method
   def create
     if user = User.authenticate_with_credentials(params_for_login)
-      # Save the user id inside the browser cookie. This is how we keep the user
-      # logged in when they navigate around our website.
+      # a session cookie is assigned to logged users
       session[:user_id] = user.id
       redirect_to session[:return_to]
     else
-    # If user's login doesn't work, send them back to the login form.
-      errors.add(:email, message: "This email is not registered")
-      redirect_to session[:return_to]
+      redirect_to session[:return_to], flash: { error: "Invalid email address" }
     end
   end
 
+  #session gets cleared upon logout
   def destroy
     session.clear
     redirect_to :back
@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
 
   private
 
+  #helper for login
   def params_for_login
     params.require(:session).permit(:email, :password)
   end

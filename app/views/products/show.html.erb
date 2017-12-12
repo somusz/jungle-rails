@@ -1,3 +1,4 @@
+<%# page showing an individual product %>
 <section class="products-show">
 
   <header class="page-header">
@@ -26,6 +27,7 @@
       </div>
     </div>
 
+    <%# product reviews get rendered under the product%>
     <%= render 'review', reviews: @product.reviews %>
 
   </article>

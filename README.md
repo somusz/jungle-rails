@@ -2,6 +2,16 @@
 
 Jungle is a mini e-commerce application built with Rails 4.2.
 
+## Features
+
+* User registration
+* User sessions and authentication
+* Admin platform for product upload and managing categorization (Admin credentials: u: 'Jungle', p: 'book')
+* Adding products to cart
+* Reviewing and rating products
+* Checkout via Stripe
+* Order confirmation page and email
+
 ## Setup and launch
 
 1. Fork & Clone

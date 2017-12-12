@@ -1,5 +1,7 @@
+<%# order review page after checkout%>
 <section class="orders-show">
 
+  <%# order id for reference%>
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
   </header>
@@ -8,6 +10,7 @@
     <h4>Your order:</h4>
 
     <div class="panel panel-default items">
+      <%# table containing the orders with each items%>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -19,12 +22,15 @@
           </tr>
         </thead>
         <tbody>
+          <%# order total set to zero initially%>
           <% @order_total = 0 %>
 
+          <%# each item gets rendered row-by-row%>
           <% @order.line_items.each do |item| %>
             <%= render 'item', item: item %>
           <% end %>
         </tbody>
+        <%# order total printed at the bottom %>
         <tfoot>
           <tr>
             <th colspan="5">
@@ -39,11 +45,13 @@
     </div>
   </div>
 
+  <%# email confirmation message%>
   <div class="order-summary jumbotron">
     <h4>We have sent a copy to your email address: <%= @order.email %>.</h4>
     <h4>Thank you for your order!</h4>
   </div>
 
+  <%# option to return to shopping%>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>

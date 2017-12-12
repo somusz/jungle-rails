@@ -1,13 +1,16 @@
+<%# new product upload page %>
 <section class="admin-products-new">
 
   <header class="page-header">
     <h1>Admin &raquo; New Product</h1>
   </header>
 
+  <%# link to products admin index page%>
   <div class="well">
     <%= link_to 'All Products', [:admin, :products], class: 'btn btn-info' %>
   </div>
 
+  <%# form for uploading new product%>
   <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_for [:admin, @product] do |form| %>
